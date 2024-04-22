@@ -1,1 +1,106 @@
-<h1>Hallo Welt!</h1>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/icon?family=Material+Icons"
+/>
+<link
+  rel="stylesheet"
+  href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css"
+/>
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+<!-- <h1>Benutzerdefinierter Benutzername: {{ username }}</h1>
+<h1>Benutzername: {{ request.user }}</h1>
+<h1>Email: {{ request.user.email }}</h1>
+<h1>Letzter Login: {{ request.user.last_login }}</h1>
+<h1>Beigetreten: {{ request.user.date_joined }}</h1> -->
+
+<style>
+  .page-content {
+    padding: 100px 100px;
+  }
+  .mdl-layout__drawer-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .color-grey {
+    color: rgba(0, 0, 0, 0.4);
+  }
+</style>
+
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title">
+        Welcome
+        {% if request.user.is_authenticated %}
+        , 
+        {{ request.user.first_name }}
+        {% endif %}
+        
+        </span
+      >
+
+      <div class="mdl-layout-spacer"></div>
+
+      <nav class="mdl-navigation mdl-layout--large-screen-only">
+        <a class="mdl-navigation__link" href="">Link</a>
+        <a class="mdl-navigation__link" href="">Link</a>
+        <a class="mdl-navigation__link" href="">Link</a>
+        <a class="mdl-navigation__link" href="">Link</a>
+      </nav>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">Chatroom</span>
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" href="">Link</a>
+      <a class="mdl-navigation__link" href="">Link</a>
+      <a class="mdl-navigation__link" href="">Link</a>
+      <a class="mdl-navigation__link" href="">Link</a>
+    </nav>
+  </div>
+  <main class="mdl-layout__content">
+    <div class="page-content">
+      {% if request.user.is_authenticated %}
+      
+      {% for message in messages %}
+      <div>
+        <span class="color-grey"> [{{ message.created_at }}] </span>
+        {{ message.author }}: {{ message.text }}
+      </div>
+      {% endfor %}
+
+      <form action="/chat/" method="post">
+        {% csrf_token %}
+        <div
+          class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
+        >
+          <input
+            class="mdl-textfield__input"
+            name="textmessage"
+            type="text"
+            id="sample3"
+          />
+          <label class="mdl-textfield__label" for="sample3">Text...</label>
+        </div>
+
+        <button
+          class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+        >
+          Send
+        </button>
+      </form>
+
+      {% else %}
+        <h2>Nicht eingeloggt</h2>
+        <p>Du bist nicht eingeloggt. Bitte logge dich ein.<br>
+        Bitte klicke <a href="/login/">hier</a>.
+        </p>
+
+      {% endif %}
+    </div>
+  </main>
+</div>
