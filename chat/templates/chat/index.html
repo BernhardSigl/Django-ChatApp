@@ -28,6 +28,17 @@
   </button>
 </form>
 
+<br><br>
+
+<form action="{% url 'logout' %}" method="post">
+  {% csrf_token %}
+  <button
+    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+  >
+    Ausloggen
+  </button>
+</form>
+
 {% else %}
 <h2>Nicht eingeloggt</h2>
 <p>

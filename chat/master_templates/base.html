@@ -24,9 +24,9 @@
         <div class="mdl-layout__header-row">
           <!-- Title -->
           <span class="mdl-layout-title">
-            Welcome,
+            Welcome
             {% if request.user.is_authenticated %} 
-            {{ request.user.username }}
+            , {{ request.user.username }}
             {% endif %}
           </span>
 

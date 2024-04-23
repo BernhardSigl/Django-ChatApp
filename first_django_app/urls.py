@@ -19,9 +19,12 @@ from django.urls import path
 
 from chat.views import index, login_view, register_view
 
+from django.contrib.auth import views as logOut_view
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('chat/', index),
     path('login/', login_view),
-    path('register/', register_view)
+    path('register/', register_view),
+    path('logout/', logOut_view.LogoutView.as_view(next_page='/login/'), name='logout'),
 ]
