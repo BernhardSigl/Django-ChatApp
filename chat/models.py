@@ -2,6 +2,8 @@ from django.db import models
 from datetime import date
 from django.conf import settings
 
+class Register(models.Model):
+  text = models.CharField(max_length=500)
 class Login(models.Model):
   text = models.CharField(max_length=500)
 

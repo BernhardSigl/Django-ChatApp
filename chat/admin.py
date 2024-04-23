@@ -1,4 +1,4 @@
-from .models import Chat, Message, Login
+from .models import Chat, Message, Login, Register
 from django.contrib import admin
 
 class MessageAdmin(admin.ModelAdmin):
@@ -10,3 +10,4 @@ class MessageAdmin(admin.ModelAdmin):
 admin.site.register(Message, MessageAdmin)
 admin.site.register(Chat)
 admin.site.register(Login)
+admin.site.register(Register)
