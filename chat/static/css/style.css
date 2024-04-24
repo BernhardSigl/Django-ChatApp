@@ -1,21 +1,206 @@
 .page-content {
-    padding: 100px 100px;
-  }
-  .mdl-layout__drawer-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  padding: 100px 100px;
+}
 
-  .color-grey {
-    color: rgba(0, 0, 0, 0.4);
-  }
+html {
+  background-color: #1f1f1f;
+}
 
-  .login-inputs {
-    display: flex;
-    flex-direction: column;
-  }
+header {
+  background-color: #181818 !important;
+}
 
-  .login-btn {
-    width: 120px;
-  }
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+i {
+  margin: 0;
+}
+
+i {
+  font-weight: 500;
+}
+
+h2,p {
+  color: white;
+}
+
+h2 {
+  margin-bottom: 24px;
+}
+
+.mdl-layout__drawer-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mdl-layout-title {
+  color: white;
+}
+
+.mdl-layout__drawer {
+  background-color: #181818;
+}
+
+.color-grey {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.color-red {
+  color: red;
+}
+
+.login-inputs {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-inputs div {
+  margin-bottom: 12px !important;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.login-btn {
+  width: 120px;
+  background-color: #181818;
+  color: white !important;
+  border: 2px solid white;
+  margin-top: 12px;
+}
+
+.nav-bar-btn {
+  background-color: #1f1f1f;
+  color: white;
+  border: 0px;
+  padding: 16px;
+  width: 100%;
+  text-align: start;
+  cursor: pointer;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.nav-bar-btn:hover {
+  background-color: #e3e3e3;
+  color: black;
+}
+
+a {
+  text-decoration: none;
+}
+
+.mdl-textfield {
+  background-color: white;
+  border-radius: 10px;
+  width: calc(100% - 50px);
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+/* chat start */
+#messageContainer {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+.chat-box {
+  width: 100%;
+  margin-bottom: 8px;
+  display: flex;
+}
+
+.chat-content {
+  position: relative;
+  max-width: 200px;
+  min-width: 150px;
+  padding: 16px 16px 32px;
+  border-radius: 20px 20px 0 20px;
+  background-color: aquamarine;
+}
+
+.chat-right {
+  justify-content: flex-end;
+}
+
+.chat-right-color {
+  background-color: aqua !important;
+  border-radius: 20px 20px 20px 0 !important;
+  margin-right: 4px;
+}
+
+.date {
+  font-size: 12px;
+  position: absolute;
+  right: 42px;
+  bottom: 4px;
+}
+
+lord-icon {
+  position: absolute;
+  bottom: 7px;
+}
+
+.first_check {
+  right: 8px;
+}
+
+.second_check {
+  right: 15px;
+}
+
+.mdl-textfield--floating-label,
+.mdl-textfield__label {
+  padding-left: 20px;
+  padding-right: 20px;
+  box-sizing: border-box;
+}
+
+.mdl-textfield__label:after {
+  left: 20px !important;
+  right: 20px !important;
+  width: calc(100% - 40px) !important;
+}
+
+.send-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.send-btn {
+  margin-left: 12px;
+  background-color:black !important;
+  border: 2px solid #00FFFF;
+}
+
+.chat-content-send-field {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: calc(100vh - 256px);
+  box-sizing: border-box;
+  justify-content: space-between;
+}
+/* chat end */
+.scroll-bar::-webkit-scrollbar {
+  display: block !important;
+  width: 8px !important;
+  padding: 20px 0 !important;
+}
+
+.scroll-bar::-webkit-scrollbar-track {
+  background-color: transparent !important;
+}
+
+.scroll-bar::-webkit-scrollbar-thumb {
+  background-color: #909090 !important;
+  border-radius: 10px;
+}
+/* scroll-bar end */

@@ -14,46 +14,54 @@
       href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css"
     />
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
 
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   </head>
+
+  <script></script>
+
   <body>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
       <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
           <!-- Title -->
           <span class="mdl-layout-title">
-            Welcome
-            {% if request.user.is_authenticated %} 
-            , {{ request.user.username }}
+            {% if not request.user.is_authenticated %}
+            Willkommen
+            {% endif %}
+            {% if request.user.is_authenticated %}
+            Willkommen, 
+            {{request.user.username }}
             {% endif %}
           </span>
 
           <div class="mdl-layout-spacer"></div>
-
-          <nav class="mdl-navigation mdl-layout--large-screen-only">
-            <a class="mdl-navigation__link" href="">Link</a>
-            <a class="mdl-navigation__link" href="">Link</a>
-            <a class="mdl-navigation__link" href="">Link</a>
-            <a class="mdl-navigation__link" href="">Link</a>
-          </nav>
         </div>
       </header>
       <div class="mdl-layout__drawer">
         <span class="mdl-layout-title">Chatroom</span>
         <nav class="mdl-navigation">
-          <a class="mdl-navigation__link" href="">Link</a>
-          <a class="mdl-navigation__link" href="">Link</a>
-          <a class="mdl-navigation__link" href="">Link</a>
-          <a class="mdl-navigation__link" href="">Link</a>
+          {% if 'chat' in request.path %}
+          <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button class="nav-bar-btn" href="{% url 'logout' %}">Ausloggen</button>
+          </form>
+          {% endif %}
+          
+          {% if 'login' not in request.path %}
+          <a class="nav-bar-btn" href="{% url 'login' %}">Anmelden</a>
+          {% endif %}
+    
+          <!-- Register Button - Visible only when not on the registration page -->
+          {% if 'register' not in request.path %}
+          <a class="nav-bar-btn" href="{% url 'register' %}">Registrieren</a>
+          {% endif %}
         </nav>
       </div>
       <main class="mdl-layout__content">
-        <div class="page-content">
-            {% block content %}
-            {% endblock %}
-        </div>
+        <div class="page-content">{% block content %} {% endblock %}</div>
       </main>
     </div>
   </body>

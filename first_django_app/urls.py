@@ -24,7 +24,8 @@ from django.contrib.auth import views as logOut_view
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('chat/', index),
-    path('login/', login_view),
-    path('register/', register_view),
+    path('login/', login_view, name='login'), # name=... für die Weiterleitung in der Nav-Bar
+    path('register/', register_view, name='register'),
     path('logout/', logOut_view.LogoutView.as_view(next_page='/login/'), name='logout'),
+    
 ]

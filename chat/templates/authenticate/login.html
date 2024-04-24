@@ -1,34 +1,61 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h2>Login</h2>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    loginBtn.disabled = true;
 
-{% if wrongPassword %}
-    <p>Benutzername/Passwort ist falsch</p>
-{% endif %}
+    const updateLoginButton = function () {
+      loginBtn.disabled =
+        username.value.trim() === "" || password.value.trim() === "";
+    };
 
+    username.addEventListener("input", updateLoginButton);
+    password.addEventListener("input", updateLoginButton);
+  });
+</script>
+
+<h2>Anmelden</h2>
 
 <form action="/login/" method="POST" class="login-inputs">
   {% csrf_token %}
-  <input type="hidden" name="redirect" value="{{ redirect }}">
+  <input type="hidden" name="redirect" value="{{ redirect }}" />
 
   <div class="mdl-textfield mdl-js-textfield">
-    <input class="mdl-textfield__input" name="username" type="text">
+    <input
+      class="mdl-textfield__input"
+      name="username"
+      type="text"
+      id="username"
+      value="{{ username|default:'' }}"
+    />
     <label class="mdl-textfield__label" for="sample1">Username</label>
   </div>
 
   <div class="mdl-textfield mdl-js-textfield">
-    <input class="mdl-textfield__input" name="password" type="password">
+    <input
+      class="mdl-textfield__input"
+      name="password"
+      type="password"
+      id="password"
+    />
     <label class="mdl-textfield__label" for="sample1">Password</label>
   </div>
 
-  <button class="login-btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+  {% if wrongPassword %}
+  <p class="color-red">Benutzer existiert nicht oder ungültiges Passwort</p>
+  {% endif %}
+
+  <button
+    id="loginBtn"
+    class="login-btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
+  >
     Login
   </button>
 
-  <br><br>
-  <p>Noch kein Mitglied? <a href="/register/">Hier</a> registrieren</p>
+  <br /><br />
 
+  <p>Noch kein Mitglied? <a href="/register/">Hier</a> registrieren</p>
 </form>
 
 {% endblock %}

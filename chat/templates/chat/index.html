@@ -2,50 +2,177 @@
 {% block content %}
 {% if request.user.is_authenticated %}
 
-{% for message in messages %}
-<div>
-  <span class="color-grey"> [{{ message.created_at }}] </span>
-  {{ message.author }}: {{ message.text }}
-</div>
-{% endfor %}
+<script>
+  let firstRender = true;
 
-<form action="/chat/" method="post">
+  async function sendMessage() {
+    firstRender = true;
+    let fd = new FormData(); // fd: formdata
+    let token = "{{ csrf_token }}";
+    fd.append("textmessage", messageField.value);
+    fd.append("csrfmiddlewaretoken", token);
+    try {
+      await renderPreMessage(messageField.value);
+      let response = await fetch("/chat/", {
+        method: "POST",
+        body: fd,
+      });
+      let json = await response.json();
+      // console.log('json', JSON.parse(json).fields) // alt
+
+      deleteMessage.remove();
+
+      //const fetchMessage = JSON.parse(json).fields.text // alt
+      //const fetchDate = JSON.parse(json).fields.created_at // alt
+      //const author = JSON.parse(json).fields.author // alt
+      const fetchMessage = json.textmessage;
+      const fetchDate = json.created_at;
+      const fetchAuthor = json.author;
+      await renderFetchMessage(fetchMessage, fetchDate, fetchAuthor);
+      waitForLoad();
+      messageField.value = "";
+    } catch (e) {
+      console.error("Fehler: ", e);
+    }
+  }
+
+  function formatPreDate() {
+    const date = new Date();
+    const options = { month: "long", day: "numeric", year: "numeric" };
+    return date.toLocaleDateString("en-US", options);
+  }
+
+  function formatFetchDate(fetchDate) {
+    const date = new Date(fetchDate); // Datum aus der Zeichenkette erstellen
+    const options = { month: "long", day: "numeric", year: "numeric" }; // Optionen für die Formatierung
+    return date.toLocaleDateString("en-US", options);
+  }
+
+  function renderPreMessage(preMessage) {
+    const formattedPreDate = formatPreDate();
+    return (messageContainer.innerHTML += `
+      <div id="deleteMessage" class="chat-box chat-right"> 
+        <span class="color-grey date">${formattedPreDate}</span>
+        <b class="color-grey">{{ request.user.username }}:<b/> <i>${preMessage}</i>
+      </div>
+    `);
+  }
+
+  function renderFetchMessage(fetchMessage, fetchDate, author) {
+    const formattedFetchDate = formatFetchDate(fetchDate);
+    const chatPosition = author === '{{ request.user.username }}' ? "chat-right" : "";
+    const chatColor = author === '{{ request.user.username }}' ? "chat-right-color" : "";
+    return (messageContainer.innerHTML += `
+      <div
+      class="chat-box ${chatPosition}"
+      >
+        <div class="chat-content ${chatColor}">
+        <span class="color-grey date">${formattedFetchDate}</span>
+        <b>${author}:<b/> <i>${fetchMessage}</i>
+
+        <lord-icon
+          class="first_check"
+          src="https://cdn.lordicon.com/dangivhk.json"
+          trigger="in"
+          delay="2000"
+          style="width:14px;height:14px">
+        </lord-icon>
+      
+
+        <lord-icon
+          class="second_check"
+          src="https://cdn.lordicon.com/dangivhk.json"
+          trigger="in"
+          delay="2000"
+          style="width:14px;height:14px">
+        </lord-icon>
+      </div>
+      </div>
+    `);
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    sendBtn.disabled = true;
+    scrollToBottom();
+    const updateSendBtn = function () {
+      sendBtn.disabled =
+        messageField.value.trim() === "";
+    };
+
+    messageField.addEventListener("input", updateSendBtn);
+    updateSendBtn();
+  });
+
+  function scrollToBottom() {
+    const messageContainer = document.getElementById("messageContainer");
+    messageContainer.scrollTop = messageContainer.scrollHeight;
+  }
+
+  function waitForLoad() {
+    if (document.readyState === "complete") {
+      scrollToBottom();
+    } else {
+      setTimeout(waitForLoad, 100);
+    }
+  }
+  
+  waitForLoad(); 
+</script>
+
+<div class="chat-content-send-field">
+
+<div id="messageContainer" class="scroll-bar">
+  {% for message in messages %}
+  <div
+  class="chat-box
+  {% if message.author|stringformat:'s' == request.user.username|stringformat:'s' %}chat-right{% endif %}"
+  >
+    <div class="chat-content
+    {% if message.author|stringformat:'s' == request.user.username|stringformat:'s' %}chat-right-color{% endif %}"
+    >
+    <span class="color-grey date">{{ message.created_at }}</span>
+    <b>{{ message.author }}:</b> <i>{{ message.text }}</i>
+
+    <lord-icon
+      class="first_check"
+      src="https://cdn.lordicon.com/dangivhk.json"
+      trigger="in"
+      delay="2000"
+      style="width: 14px; height: 14px"
+    >
+    </lord-icon>
+
+    <lord-icon
+      class="second_check"
+      src="https://cdn.lordicon.com/dangivhk.json"
+      trigger="in"
+      delay="2000"
+      style="width: 14px; height: 14px"
+    >
+    </lord-icon>
+  </div>
+  </div>
+  {% endfor %}
+</div>
+
+<form onsubmit="sendMessage(); return false;" method="post" class="send-box">
   {% csrf_token %}
   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
     <input
       class="mdl-textfield__input"
       name="textmessage"
       type="text"
-      id="sample3"
+      id="messageField"
     />
-    <label class="mdl-textfield__label" for="sample3">Text...</label>
+    <label class="mdl-textfield__label" for="messageField">Text...</label>
   </div>
 
-  <button
-    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-  >
-    Send
+  <button id="sendBtn" class="send-btn mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
+    <i class="material-icons">send</i>
   </button>
 </form>
 
-<br><br>
-
-<form action="{% url 'logout' %}" method="post">
-  {% csrf_token %}
-  <button
-    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-  >
-    Ausloggen
-  </button>
-</form>
-
-{% else %}
-<h2>Nicht eingeloggt</h2>
-<p>
-  Du bist nicht eingeloggt. Bitte logge dich ein.<br />
-  Bitte klicke <a href="/login/">hier</a>.
-</p>
+</div>
 
 {% endif %}
-
 {% endblock %}
