@@ -15,17 +15,21 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.http import HttpResponseRedirect
 from django.urls import path
 
 from chat.views import index, login_view, register_view
 
 from django.contrib.auth import views as logOut_view
 
+def redirect_to_login(request):
+    return HttpResponseRedirect('/login/')
+
 urlpatterns = [
+    path('', redirect_to_login),
     path('admin/', admin.site.urls),
     path('chat/', index),
     path('login/', login_view, name='login'), # name=... für die Weiterleitung in der Nav-Bar
     path('register/', register_view, name='register'),
     path('logout/', logOut_view.LogoutView.as_view(next_page='/login/'), name='logout'),
-    
 ]

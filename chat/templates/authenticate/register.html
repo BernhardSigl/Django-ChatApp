@@ -26,8 +26,6 @@
 
 <form action="/register/" method="POST" class="login-inputs">
   {% csrf_token %}
-  <!-- <input type="hidden" name="redirect" value="{{ redirect }}"> -->
-
   <div class="mdl-textfield mdl-js-textfield">
     <input
       class="mdl-textfield__input"
@@ -38,6 +36,10 @@
     />
     <label class="mdl-textfield__label" for="sample1">Username</label>
   </div>
+
+  {% if usernameExists %}
+  <p class="color-red">Username existiert bereits</p>
+  {% endif %}
 
   <div class="mdl-textfield mdl-js-textfield">
     <input
@@ -50,6 +52,10 @@
     />
     <label class="mdl-textfield__label" for="sample1">Email</label>
   </div>
+
+  {% if emailExists %}
+  <p class="color-red">Email existiert bereits</p>
+  {% endif %}
 
   <div class="mdl-textfield mdl-js-textfield">
     <input

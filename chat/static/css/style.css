@@ -1,5 +1,11 @@
 .page-content {
   padding: 100px 100px;
+  width: 600px;
+}
+
+.mdl-layout__content {
+  display:flex;
+  justify-content: center;
 }
 
 html {
@@ -22,9 +28,13 @@ i {
 
 i {
   font-weight: 500;
+  white-space: normal;
+  word-wrap: break-word;
+  hyphens: auto;
 }
 
-h2,p {
+h2,
+p {
   color: white;
 }
 
@@ -50,8 +60,14 @@ h2 {
   color: rgba(0, 0, 0, 0.4);
 }
 
+.register-link {
+  color: #00ffff;
+}
+
 .color-red {
   color: red;
+  margin-bottom: 12px;
+  margin-top: -10px;
 }
 
 .login-inputs {
@@ -68,9 +84,14 @@ h2 {
 .login-btn {
   width: 120px;
   background-color: #181818;
-  color: white !important;
-  border: 2px solid white;
+  color: white;
+  border: 1px solid #00ffff;
   margin-top: 12px;
+}
+
+.login-btn:disabled {
+  color: grey !important;
+  cursor: not-allowed !important;
 }
 
 .nav-bar-btn {
@@ -176,15 +197,15 @@ lord-icon {
 
 .send-btn {
   margin-left: 12px;
-  background-color:black !important;
-  border: 2px solid #00FFFF;
+  background-color: black !important;
+  border: 2px solid #00ffff;
 }
 
 .chat-content-send-field {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  height: calc(100vh - 256px);
+  height: calc(100vh - 270px);
   box-sizing: border-box;
   justify-content: space-between;
 }
@@ -204,3 +225,14 @@ lord-icon {
   border-radius: 10px;
 }
 /* scroll-bar end */
+
+@media (max-width: 768px) {
+  .page-content {
+    padding: 24px 24px;
+    width: 100%;
+  }
+
+  .chat-content-send-field {
+    height: calc(100vh - 104px);
+  }
+}

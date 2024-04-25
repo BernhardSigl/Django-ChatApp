@@ -32,8 +32,11 @@ def index(request):
 def login_view(request):
     context = {}
     redirect = request.GET.get('next', '/chat/')
+    
     if request.method == 'POST':
-        user = authenticate(username=request.POST.get('username'), password=request.POST.get('password'))
+        username = request.POST.get('username').lower()
+        password = request.POST.get('password')
+        user = authenticate(username=username, password=password)
         if user:
             login(request, user)
             return HttpResponseRedirect(request.POST.get('redirect'))
@@ -48,16 +51,38 @@ def login_view(request):
 def register_view(request):
     context = {}
     if request.method == 'POST':
-        if request.POST.get('password') == request.POST.get('repeatPassword'):
-            user = User.objects.create_user(username=request.POST.get('username'),
-                                 password=request.POST.get('password'), email=request.POST.get('email'))
-            if user:
-                return redirect('/login/')
-        else:
+        username = request.POST.get('username').lower()
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        repeatPassword = request.POST.get('repeatPassword')
+        has_error = False
+        
+        if User.objects.filter(username=username).exists():
+            context["usernameExists"] = True
+            context['username'] = username
+            context['email'] = email
+            has_error = True
+        
+        if User.objects.filter(email=email).exists():
+            context["emailExists"] = True
+            context['username'] = username
+            context['email'] = email
+            has_error = True
+
+        if password != repeatPassword:
             context["wrongRepeatPassword"] = True
             context['username'] = request.POST.get('username')
             context['email'] = request.POST.get('email')
-            print('4')
-            return render(request, 'authenticate/register.html', context)
+            has_error = True
+            
+        
+        if not has_error:
+            user = User.objects.create_user(username=username,
+                                 password=password, email=email)
+            if user:
+                return redirect('/login/')
+        
+        return render(request, 'authenticate/register.html', context)
+        
     else:
-        return render(request, 'authenticate/register.html')
+        return render(request, 'authenticate/register.html', context)

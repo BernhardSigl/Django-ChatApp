@@ -18,13 +18,9 @@
         body: fd,
       });
       let json = await response.json();
-      // console.log('json', JSON.parse(json).fields) // alt
 
       deleteMessage.remove();
 
-      //const fetchMessage = JSON.parse(json).fields.text // alt
-      //const fetchDate = JSON.parse(json).fields.created_at // alt
-      //const author = JSON.parse(json).fields.author // alt
       const fetchMessage = json.textmessage;
       const fetchDate = json.created_at;
       const fetchAuthor = json.author;
@@ -163,6 +159,7 @@
       name="textmessage"
       type="text"
       id="messageField"
+      maxlength="150"
     />
     <label class="mdl-textfield__label" for="messageField">Text...</label>
   </div>

@@ -18,6 +18,7 @@
 
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="icon" type="image/x-icon" href="./../static/img/speech_balloon.png">
   </head>
 
   <script></script>
@@ -50,12 +51,12 @@
           </form>
           {% endif %}
           
-          {% if 'login' not in request.path %}
+          {% if 'register' in request.path %}
           <a class="nav-bar-btn" href="{% url 'login' %}">Anmelden</a>
           {% endif %}
     
           <!-- Register Button - Visible only when not on the registration page -->
-          {% if 'register' not in request.path %}
+          {% if 'login' in request.path %}
           <a class="nav-bar-btn" href="{% url 'register' %}">Registrieren</a>
           {% endif %}
         </nav>

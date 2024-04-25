@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>chat package &mdash; Simple Chat App 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=6fefd858"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Simple Chat App
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">chat package</a><ul>
+<li><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-chat.admin">chat.admin module</a><ul>
+<li><a class="reference internal" href="#chat.admin.MessageAdmin"><code class="docutils literal notranslate"><span class="pre">MessageAdmin</span></code></a><ul>
+<li><a class="reference internal" href="#chat.admin.MessageAdmin.fields"><code class="docutils literal notranslate"><span class="pre">MessageAdmin.fields</span></code></a></li>
+<li><a class="reference internal" href="#chat.admin.MessageAdmin.list_display"><code class="docutils literal notranslate"><span class="pre">MessageAdmin.list_display</span></code></a></li>
+<li><a class="reference internal" href="#chat.admin.MessageAdmin.media"><code class="docutils literal notranslate"><span class="pre">MessageAdmin.media</span></code></a></li>
+<li><a class="reference internal" href="#chat.admin.MessageAdmin.search_fields"><code class="docutils literal notranslate"><span class="pre">MessageAdmin.search_fields</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-chat.apps">chat.apps module</a><ul>
+<li><a class="reference internal" href="#chat.apps.ChatConfig"><code class="docutils literal notranslate"><span class="pre">ChatConfig</span></code></a><ul>
+<li><a class="reference internal" href="#chat.apps.ChatConfig.default_auto_field"><code class="docutils literal notranslate"><span class="pre">ChatConfig.default_auto_field</span></code></a></li>
+<li><a class="reference internal" href="#chat.apps.ChatConfig.name"><code class="docutils literal notranslate"><span class="pre">ChatConfig.name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-chat.models">chat.models module</a><ul>
+<li><a class="reference internal" href="#chat.models.Chat"><code class="docutils literal notranslate"><span class="pre">Chat</span></code></a><ul>
+<li><a class="reference internal" href="#chat.models.Chat.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">Chat.DoesNotExist</span></code></a></li>
+<li><a class="reference internal" href="#chat.models.Chat.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">Chat.MultipleObjectsReturned</span></code></a></li>
+<li><a class="reference internal" href="#chat.models.Chat.chat_message_set"><code class="docutils literal notranslate"><span class="pre">Chat.chat_message_set</span></code></a></li>
+<li><a class="reference internal" href="#chat.models.Chat.created_at"><code class="docutils literal notranslate"><span class="pre">Chat.created_at</span></code></a></li>
+<li><a class="reference internal" href="#chat.models.Chat.get_next_by_created_at"><code class="docutils literal notranslate"><span class="pre">Chat.get_next_by_created_at()</span></code></a></li>
+<li><a class="reference internal" href="#chat.models.Chat.get_previous_by_created_at"><code class="docutils literal notranslate"><span class="pre">Chat.get_previous_by_created_at()</span></code></a></li>
+<li><a class="reference internal" href="#chat.models.Chat.id"><code class="docutils literal notranslate"><span class="pre">Chat.id</span></code></a></li>
+<li><a class="reference internal" href="#chat.models.Chat.objects"><code class="docutils literal notranslate"><span class="pre">Chat.objects</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#chat.models.Login"><code class="docutils literal notranslate"><span class="pre">Login</span></code></a><ul>
+<li><a class="reference internal" href="#chat.models.Login.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">Login.DoesNotExist</span></code></a></li>
+<li><a class="reference internal" href="#chat.models.Login.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">Login.MultipleObjectsReturned</span></code></a></li>
+<li><a class="reference internal" href="#chat.models.Login.id"><code class="docutils literal notranslate"><span class="pre">Login.id</span></code></a></li>
+<li><a class="reference internal" href="#chat.models.Login.objects"><code class="docutils literal notranslate"><span class="pre">Login.objects</span></code></a></li>
+<li><a class="reference internal" href="#chat.models.Login.text"><code class="docutils literal notranslate"><span class="pre">Login.text</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#chat.models.Message"><code class="docutils literal notranslate"><span class="pre">Message</span></code></a><ul>
+<li><a class="reference internal" href="#chat.models.Message.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">Message.DoesNotExist</span></code></a></li>
+<li><a class="reference internal" href="#chat.models.Message.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">Message.MultipleObjectsReturned</span></code></a></li>
+<li><a class="reference internal" href="#chat.models.Message.author"><code class="docutils literal notranslate"><span class="pre">Message.author</span></code></a></li>
+<li><a class="reference internal" href="#chat.models.Message.author_id"><code class="docutils literal notranslate"><span class="pre">Message.author_id</span></code></a></li>
+<li><a class="reference internal" href="#chat.models.Message.chat"><code class="docutils literal notranslate"><span class="pre">Message.chat</span></code></a></li>
+<li><a class="reference internal" href="#chat.models.Message.chat_id"><code class="docutils literal notranslate"><span class="pre">Message.chat_id</span></code></a></li>
+<li><a class="reference internal" href="#chat.models.Message.created_at"><code class="docutils literal notranslate"><span class="pre">Message.created_at</span></code></a></li>
+<li><a class="reference internal" href="#chat.models.Message.get_next_by_created_at"><code class="docutils literal notranslate"><span class="pre">Message.get_next_by_created_at()</span></code></a></li>
+<li><a class="reference internal" href="#chat.models.Message.get_previous_by_created_at"><code class="docutils literal notranslate"><span class="pre">Message.get_previous_by_created_at()</span></code></a></li>
+<li><a class="reference internal" href="#chat.models.Message.id"><code class="docutils literal notranslate"><span class="pre">Message.id</span></code></a></li>
+<li><a class="reference internal" href="#chat.models.Message.objects"><code class="docutils literal notranslate"><span class="pre">Message.objects</span></code></a></li>
+<li><a class="reference internal" href="#chat.models.Message.receiver"><code class="docutils literal notranslate"><span class="pre">Message.receiver</span></code></a></li>
+<li><a class="reference internal" href="#chat.models.Message.receiver_id"><code class="docutils literal notranslate"><span class="pre">Message.receiver_id</span></code></a></li>
+<li><a class="reference internal" href="#chat.models.Message.text"><code class="docutils literal notranslate"><span class="pre">Message.text</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#chat.models.Register"><code class="docutils literal notranslate"><span class="pre">Register</span></code></a><ul>
+<li><a class="reference internal" href="#chat.models.Register.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">Register.DoesNotExist</span></code></a></li>
+<li><a class="reference internal" href="#chat.models.Register.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">Register.MultipleObjectsReturned</span></code></a></li>
+<li><a class="reference internal" href="#chat.models.Register.id"><code class="docutils literal notranslate"><span class="pre">Register.id</span></code></a></li>
+<li><a class="reference internal" href="#chat.models.Register.objects"><code class="docutils literal notranslate"><span class="pre">Register.objects</span></code></a></li>
+<li><a class="reference internal" href="#chat.models.Register.text"><code class="docutils literal notranslate"><span class="pre">Register.text</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-chat.tests">chat.tests module</a></li>
+<li><a class="reference internal" href="#module-chat.views">chat.views module</a><ul>
+<li><a class="reference internal" href="#chat.views.index"><code class="docutils literal notranslate"><span class="pre">index()</span></code></a></li>
+<li><a class="reference internal" href="#chat.views.login_view"><code class="docutils literal notranslate"><span class="pre">login_view()</span></code></a></li>
+<li><a class="reference internal" href="#chat.views.register_view"><code class="docutils literal notranslate"><span class="pre">register_view()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-chat">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Simple Chat App</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">chat package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/chat.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="chat-package">
+<h1>chat package<a class="headerlink" href="#chat-package" title="Link to this heading"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="chat.migrations.html">chat.migrations package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="chat.migrations.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chat.migrations.html#module-chat.migrations.0001_initial">chat.migrations.0001_initial module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="chat.migrations.html#chat.migrations.0001_initial.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="chat.migrations.html#chat.migrations.0001_initial.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="chat.migrations.html#chat.migrations.0001_initial.Migration.initial"><code class="docutils literal notranslate"><span class="pre">Migration.initial</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="chat.migrations.html#chat.migrations.0001_initial.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="chat.migrations.html#module-chat.migrations.0002_chat">chat.migrations.0002_chat module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="chat.migrations.html#chat.migrations.0002_chat.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="chat.migrations.html#chat.migrations.0002_chat.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="chat.migrations.html#chat.migrations.0002_chat.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="chat.migrations.html#module-chat.migrations.0003_message_chat">chat.migrations.0003_message_chat module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="chat.migrations.html#chat.migrations.0003_message_chat.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="chat.migrations.html#chat.migrations.0003_message_chat.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="chat.migrations.html#chat.migrations.0003_message_chat.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="chat.migrations.html#module-chat.migrations.0004_login">chat.migrations.0004_login module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="chat.migrations.html#chat.migrations.0004_login.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="chat.migrations.html#chat.migrations.0004_login.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="chat.migrations.html#chat.migrations.0004_login.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="chat.migrations.html#module-chat.migrations.0005_register">chat.migrations.0005_register module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="chat.migrations.html#chat.migrations.0005_register.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="chat.migrations.html#chat.migrations.0005_register.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="chat.migrations.html#chat.migrations.0005_register.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="chat.migrations.html#module-chat.migrations">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-chat.admin">
+<span id="chat-admin-module"></span><h2>chat.admin module<a class="headerlink" href="#module-chat.admin" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="chat.admin.MessageAdmin">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chat.admin.</span></span><span class="sig-name descname"><span class="pre">MessageAdmin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">admin_site</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chat.admin.MessageAdmin" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelAdmin</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chat.admin.MessageAdmin.fields">
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('chat',</span> <span class="pre">'text',</span> <span class="pre">'created_at',</span> <span class="pre">'author',</span> <span class="pre">'receiver')</span></em><a class="headerlink" href="#chat.admin.MessageAdmin.fields" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chat.admin.MessageAdmin.list_display">
+<span class="sig-name descname"><span class="pre">list_display</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('text',</span> <span class="pre">'created_at',</span> <span class="pre">'author',</span> <span class="pre">'receiver')</span></em><a class="headerlink" href="#chat.admin.MessageAdmin.list_display" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="chat.admin.MessageAdmin.media">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">media</span></span><a class="headerlink" href="#chat.admin.MessageAdmin.media" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chat.admin.MessageAdmin.search_fields">
+<span class="sig-name descname"><span class="pre">search_fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('text',)</span></em><a class="headerlink" href="#chat.admin.MessageAdmin.search_fields" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-chat.apps">
+<span id="chat-apps-module"></span><h2>chat.apps module<a class="headerlink" href="#module-chat.apps" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="chat.apps.ChatConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chat.apps.</span></span><span class="sig-name descname"><span class="pre">ChatConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_module</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chat.apps.ChatConfig" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">AppConfig</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chat.apps.ChatConfig.default_auto_field">
+<span class="sig-name descname"><span class="pre">default_auto_field</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'django.db.models.BigAutoField'</span></em><a class="headerlink" href="#chat.apps.ChatConfig.default_auto_field" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chat.apps.ChatConfig.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'chat'</span></em><a class="headerlink" href="#chat.apps.ChatConfig.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-chat.models">
+<span id="chat-models-module"></span><h2>chat.models module<a class="headerlink" href="#module-chat.models" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="chat.models.Chat">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chat.models.</span></span><span class="sig-name descname"><span class="pre">Chat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">created_at</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chat.models.Chat" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="chat.models.Chat.DoesNotExist">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#chat.models.Chat.DoesNotExist" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="chat.models.Chat.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#chat.models.Chat.MultipleObjectsReturned" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chat.models.Chat.chat_message_set">
+<span class="sig-name descname"><span class="pre">chat_message_set</span></span><a class="headerlink" href="#chat.models.Chat.chat_message_set" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chat.models.Chat.created_at">
+<span class="sig-name descname"><span class="pre">created_at</span></span><a class="headerlink" href="#chat.models.Chat.created_at" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chat.models.Chat.get_next_by_created_at">
+<span class="sig-name descname"><span class="pre">get_next_by_created_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateField:</span> <span class="pre">created_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chat.models.Chat.get_next_by_created_at" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chat.models.Chat.get_previous_by_created_at">
+<span class="sig-name descname"><span class="pre">get_previous_by_created_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateField:</span> <span class="pre">created_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chat.models.Chat.get_previous_by_created_at" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chat.models.Chat.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#chat.models.Chat.id" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chat.models.Chat.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#chat.models.Chat.objects" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="chat.models.Login">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chat.models.</span></span><span class="sig-name descname"><span class="pre">Login</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chat.models.Login" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="chat.models.Login.DoesNotExist">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#chat.models.Login.DoesNotExist" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="chat.models.Login.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#chat.models.Login.MultipleObjectsReturned" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chat.models.Login.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#chat.models.Login.id" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chat.models.Login.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#chat.models.Login.objects" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chat.models.Login.text">
+<span class="sig-name descname"><span class="pre">text</span></span><a class="headerlink" href="#chat.models.Login.text" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="chat.models.Message">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chat.models.</span></span><span class="sig-name descname"><span class="pre">Message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">created_at</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">author</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">receiver</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chat.models.Message" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="chat.models.Message.DoesNotExist">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#chat.models.Message.DoesNotExist" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="chat.models.Message.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#chat.models.Message.MultipleObjectsReturned" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chat.models.Message.author">
+<span class="sig-name descname"><span class="pre">author</span></span><a class="headerlink" href="#chat.models.Message.author" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chat.models.Message.author_id">
+<span class="sig-name descname"><span class="pre">author_id</span></span><a class="headerlink" href="#chat.models.Message.author_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chat.models.Message.chat">
+<span class="sig-name descname"><span class="pre">chat</span></span><a class="headerlink" href="#chat.models.Message.chat" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chat.models.Message.chat_id">
+<span class="sig-name descname"><span class="pre">chat_id</span></span><a class="headerlink" href="#chat.models.Message.chat_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chat.models.Message.created_at">
+<span class="sig-name descname"><span class="pre">created_at</span></span><a class="headerlink" href="#chat.models.Message.created_at" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chat.models.Message.get_next_by_created_at">
+<span class="sig-name descname"><span class="pre">get_next_by_created_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateField:</span> <span class="pre">created_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chat.models.Message.get_next_by_created_at" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chat.models.Message.get_previous_by_created_at">
+<span class="sig-name descname"><span class="pre">get_previous_by_created_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateField:</span> <span class="pre">created_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chat.models.Message.get_previous_by_created_at" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chat.models.Message.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#chat.models.Message.id" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chat.models.Message.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#chat.models.Message.objects" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chat.models.Message.receiver">
+<span class="sig-name descname"><span class="pre">receiver</span></span><a class="headerlink" href="#chat.models.Message.receiver" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chat.models.Message.receiver_id">
+<span class="sig-name descname"><span class="pre">receiver_id</span></span><a class="headerlink" href="#chat.models.Message.receiver_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chat.models.Message.text">
+<span class="sig-name descname"><span class="pre">text</span></span><a class="headerlink" href="#chat.models.Message.text" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="chat.models.Register">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chat.models.</span></span><span class="sig-name descname"><span class="pre">Register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chat.models.Register" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="chat.models.Register.DoesNotExist">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#chat.models.Register.DoesNotExist" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="chat.models.Register.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#chat.models.Register.MultipleObjectsReturned" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chat.models.Register.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#chat.models.Register.id" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chat.models.Register.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#chat.models.Register.objects" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chat.models.Register.text">
+<span class="sig-name descname"><span class="pre">text</span></span><a class="headerlink" href="#chat.models.Register.text" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-chat.tests">
+<span id="chat-tests-module"></span><h2>chat.tests module<a class="headerlink" href="#module-chat.tests" title="Link to this heading"></a></h2>
+</section>
+<section id="module-chat.views">
+<span id="chat-views-module"></span><h2>chat.views module<a class="headerlink" href="#module-chat.views" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="chat.views.index">
+<span class="sig-prename descclassname"><span class="pre">chat.views.</span></span><span class="sig-name descname"><span class="pre">index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chat.views.index" title="Link to this definition"></a></dt>
+<dd><p>_summary_</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>request (_type_): _description_</p>
+</dd>
+<dt>Returns:</dt><dd><p>_type_: _description_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="chat.views.login_view">
+<span class="sig-prename descclassname"><span class="pre">chat.views.</span></span><span class="sig-name descname"><span class="pre">login_view</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chat.views.login_view" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="chat.views.register_view">
+<span class="sig-prename descclassname"><span class="pre">chat.views.</span></span><span class="sig-name descname"><span class="pre">register_view</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chat.views.register_view" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-chat">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-chat" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Bernhard Sigl.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
