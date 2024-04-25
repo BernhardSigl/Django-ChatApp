@@ -27,11 +27,11 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 import os
-import collections
+# import collections
 # Application definition
 
-CSRF_TRUSTED_ORIGINS = ['https://*.gitpod.io']
-collections.Callable = collections.abc.Callable
+# CSRF_TRUSTED_ORIGINS = ['https://*.gitpod.io']
+# collections.Callable = collections.abc.Callable
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'chat',
-    'django_nose',
+    # 'django_nose',
 ]
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
