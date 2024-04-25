@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -28,7 +27,11 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 import os
+import collections
 # Application definition
+
+CSRF_TRUSTED_ORIGINS = ['https://*.gitpod.io']
+collections.Callable = collections.abc.Callable
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -38,6 +41,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'chat',
+    'django_nose',
+]
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-package=foo,bar',
 ]
 
 MIDDLEWARE = [

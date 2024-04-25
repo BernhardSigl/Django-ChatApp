@@ -12,12 +12,11 @@ def check_username_exists(username, context):
         bool: True if the username already exists, False otherwise.
     """
     if User.objects.filter(username=username).exists():
-        context["usernameExists"] = True
-        context['username'] = username
         has_error = True
+        context["usernameExists"] = True
     else:
         has_error = False
-    
+    context['username'] = username
     return has_error
 
 def check_email_exists(email, context):
@@ -32,12 +31,11 @@ def check_email_exists(email, context):
         bool: True if the email already exists, False otherwise.
     """
     if User.objects.filter(email=email).exists():
-        context["emailExists"] = True
-        context['email'] = email
         has_error = True
+        context["emailExists"] = True
     else:
         has_error = False
-    
+    context['email'] = email
     return has_error
 
 def check_password_match(password, repeat_password, context):
