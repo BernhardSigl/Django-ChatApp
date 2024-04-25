@@ -32,6 +32,11 @@
     <label class="mdl-textfield__label" for="sample1">Username</label>
   </div>
 
+  {% if userNotExists %}
+  <p class="color-red">Username existiert nicht</p>
+  {% endif %}
+
+
   <div class="mdl-textfield mdl-js-textfield">
     <input
       class="mdl-textfield__input"
@@ -43,7 +48,7 @@
   </div>
 
   {% if wrongPassword %}
-  <p class="color-red">Benutzer existiert nicht oder ungültiges Passwort</p>
+  <p class="color-red">Ungültiges Passwort</p>
   {% endif %}
 
   <button
