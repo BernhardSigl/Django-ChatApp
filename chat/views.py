@@ -10,6 +10,12 @@ from .utils import check_username_exists, check_email_exists, check_password_mat
 @login_required(login_url='/login/')
 
 def index(request):
+    """
+    This view renders the main chat page and processes incoming messages.
+
+    For POST requests, it creates a new message and returns it as a JSON response.
+    For GET requests, it renders the existing chat messages.
+    """
     if request.method == 'POST':
         print("received data: " + request.POST['textmessage'])
         myChat = Chat.objects.get(id=1)
@@ -26,6 +32,13 @@ def index(request):
     return render(request, 'chat/index.html', {'messages': chatMessages})
 
 def login_view(request):
+    """
+    This view handles user login.
+
+    For POST requests, it converts the username to lowercase.
+    The function checks if the username exists and if the authentication is successful.
+    If the username does not exist or the password is incorrect, it renders an error message.
+    """
     context = {}
     redirect = request.GET.get('next', '/chat/')
     if request.method == 'POST':
@@ -49,6 +62,13 @@ def login_view(request):
         return render(request, 'authenticate/login.html', {'redirect': redirect})
 
 def register_view(request):
+    """
+    This view handles user registration.
+
+    For POST requests, it checks if the username or email already exists,
+    and if the password matches the repeat password.
+    If no errors occur, a new user is created.
+    """
     context = {}
     if request.method == 'POST':
         username = request.POST.get('username').lower()

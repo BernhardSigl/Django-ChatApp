@@ -18,13 +18,8 @@
         body: fd,
       });
       let json = await response.json();
-
       deleteMessage.remove();
-
-      const fetchMessage = json.textmessage;
-      const fetchDate = json.created_at;
-      const fetchAuthor = json.author;
-      await renderFetchMessage(fetchMessage, fetchDate, fetchAuthor);
+      await renderFetchMessage(json.textmessage, json.created_at, json.author);
       waitForLoad();
       messageField.value = "";
     } catch (e) {

@@ -2,14 +2,14 @@ from django.contrib.auth.models import User
 
 def check_username_exists(username, context):
     """
-    Überprüft, ob ein Benutzername existiert. Wenn ja, wird der Kontext entsprechend angepasst.
+    Checks if a username exists. If it does, updates the context accordingly.
 
     Args:
-        username (str): Der zu überprüfende Benutzername.
-        context (dict): Der Kontext, der angepasst wird.
+        username (str): The username to check.
+        context (dict): The context to update.
 
     Returns:
-        bool: Gibt an, ob der Benutzername bereits existiert.
+        bool: True if the username already exists, False otherwise.
     """
     if User.objects.filter(username=username).exists():
         context["usernameExists"] = True
@@ -22,14 +22,14 @@ def check_username_exists(username, context):
 
 def check_email_exists(email, context):
     """
-    Überprüft, ob eine E-Mail-Adresse bereits existiert. Passt den Kontext entsprechend an.
+    Checks if an email address already exists. If it does, updates the context accordingly.
 
     Args:
-        email (str): Die zu überprüfende E-Mail-Adresse.
-        context (dict): Der Kontext, der angepasst wird.
+        email (str): The email address to check.
+        context (dict): The context to update.
 
     Returns:
-        bool: Gibt an, ob die E-Mail-Adresse bereits existiert.
+        bool: True if the email already exists, False otherwise.
     """
     if User.objects.filter(email=email).exists():
         context["emailExists"] = True
@@ -42,16 +42,15 @@ def check_email_exists(email, context):
 
 def check_password_match(password, repeat_password, context):
     """
-    Überprüft, ob das Passwort und das wiederholte Passwort übereinstimmen.
-    Wenn nicht, passt es den Kontext an und gibt an, ob ein Fehler vorliegt.
+    Checks if the password matches its repeat value. If they don't match, updates the context and indicates an error.
 
     Args:
-        password (str): Das Passwort.
-        repeat_password (str): Das wiederholte Passwort.
-        context (dict): Der Kontext, der angepasst wird.
+        password (str): The password.
+        repeat_password (str): The repeated password.
+        context (dict): The context to update.
 
     Returns:
-        bool: Gibt an, ob das Passwort nicht übereinstimmt.
+        bool: True if the passwords don't match, False otherwise.
     """
     if password != repeat_password:
         context["wrongRepeatPassword"] = True
