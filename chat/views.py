@@ -16,19 +16,21 @@ def index(request):
     For POST requests, it creates a new message and returns it as a JSON response.
     For GET requests, it renders the existing chat messages.
     """
+    myChat, created = Chat.objects.get_or_create(id=1)
     if request.method == 'POST':
+        
         print("received data: " + request.POST['textmessage'])
-        myChat = Chat.objects.get(id=1)
+
         new_message = Message.objects.create(text=request.POST['textmessage'], chat=myChat, author=request.user, receiver=request.user)
 
-        new_message_json_alt = {
+        new_message_json = {
             'textmessage': new_message.text,
             'author': new_message.author.username,
             'created_at': new_message.created_at,
         }
-        return JsonResponse(new_message_json_alt, safe=False)
+        return JsonResponse(new_message_json, safe=False)
         
-    chatMessages = Message.objects.filter(chat__id=1)
+    chatMessages = Message.objects.filter(chat=myChat)
     return render(request, 'chat/index.html', {'messages': chatMessages})
 
 def login_view(request):
